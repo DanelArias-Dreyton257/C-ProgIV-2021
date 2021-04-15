@@ -18,13 +18,13 @@ int cuantasPersonas(Persona *ap, int tamanyo, int edad) {
 	return cont;
 }
 
-float calcularMediaGrupo(GrupoPersonas *g) {
-	int sum = 0;
-	for (int i = 0; i < g->numPersonas; i++) {
-		sum += g->personas[i].edad;
-	}
-	return sum / g->numPersonas;
-}
+//float calcularMediaGrupo(GrupoPersonas *g) {
+//	int sum = 0;
+//	for (int i = 0; i < g->numPersonas; i++) {
+//		sum += g->personas[i].edad;
+//	}
+//	return sum / g->numPersonas;
+//}
 
 void anyadePersonaEnGrupo(GrupoPersonas *g, Persona p) {
 	if (g->numPersonas < 1) {
@@ -38,7 +38,8 @@ void anyadePersonaEnGrupo(GrupoPersonas *g, Persona p) {
 		g->personas = reallocPersonas;
 		g->personas[g->numPersonas - 1] = p;
 	}
-	g->mediaEdad = calcularMediaGrupo(g);
+	g->mediaEdad = (((g->numPersonas - 1) * g->mediaEdad) + p.edad)
+			/ g->numPersonas; //calcularMediaGrupo(g);
 }
 
 GrupoPersonas recuperarJovenes(Persona *ap, int tamanyo) {
