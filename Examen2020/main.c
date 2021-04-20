@@ -32,6 +32,9 @@ int main(void) {
 
 	Producto *comprados[] = { &p1, &p2, &p3, &p4, &p5 };
 
+	//PARTE 3.2-----------------------------------------------------------------
+	leerProductos(comprados, "productos.txt");
+
 	//PARTE 1 ---------------------------------------------------------
 	Compra c = { &p2, 3 };
 	printf("ANTES de la modificación de la compra…\n");
@@ -47,15 +50,13 @@ int main(void) {
 	imprimirTicket(*car);
 	//devolverCarrito(car);
 
-	//PARTE 3-------------------------------------------------------
+	//PARTE 3.1-------------------------------------------------------
 	printf("Carrito modificado:\n");
 	modificarCarrito(car, 3, 0);
 	imprimirTicket(*car);
 
 	devolverCarrito(car);
 
-	//Producto **lista = malloc(sizeof(Producto*)*5);
-	//leerProductos(lista, "productos.txt");
 
 	return 0;
 }
@@ -66,34 +67,43 @@ Producto* listaStringToProducto(char **lista) {
 void leerProductos(Producto *productos[], char *fichero) {
 	FILE *f = fopen(fichero, "r");
 	char leido = fgetc(f);
+	int contPosiciones = 0;
 	while (leido != EOF) {
 
-		int cont = 1;
+		int contLetras = 1;
 		char ref;
 		char nombre[14+1];
 		char precio[5+1];
 		while (leido != '\n') {
-			if (cont < 2) {
+			if (contLetras < 2) {
 				ref = leido;
 			}
-			else if(cont>1 && cont<16){
-				nombre[cont-2] = leido;
-				if (cont==15){
-					nombre[cont-1] = '\0';
+			else if(contLetras>1 && contLetras<16){
+				nombre[contLetras-2] = leido;
+				if (contLetras==15){
+					nombre[contLetras-1] = '\0';
 				}
 			}
-			else if(cont>15 && cont<21){
-				precio[cont-16] = leido;
-				if (cont==20){
-					precio[cont-15] = '\0';
+			else if(contLetras>15 && contLetras<21){
+				precio[contLetras-16] = leido;
+				if (contLetras==20){
+					precio[contLetras-15] = '\0';
 				}
 			}
 
-			cont++;
+			contLetras++;
 			leido = fgetc(f);
 		}
-		cont = 1;
-		printf("Ref:%c, Nombre: %s, Precio: %s",ref,nombre,precio);
+		contLetras = 1;
+
+		//printf("Ref:%c, Nombre: %s, Precio: %s\n",ref,nombre,precio);
+		Producto *p = malloc(sizeof(Producto));
+		p->ref = ref - '0';
+		strcpy(p->nombre,nombre);
+		p->precio = atof(precio);
+		productos[contPosiciones] = p;
+		contPosiciones++;
+
 		fflush(stdout);
 		leido = fgetc(f);
 
