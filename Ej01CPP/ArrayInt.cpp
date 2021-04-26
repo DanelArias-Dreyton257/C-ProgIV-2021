@@ -11,14 +11,14 @@ using namespace std;
 using namespace containers;
 
 ArrayInt::ArrayInt() {
-	this->array = (int*) malloc(sizeof(int) * DEFAULT_SIZE);
+	this->array = new int[DEFAULT_SIZE];
 	this->capacity = DEFAULT_SIZE;
 	for (unsigned int i = 0; i < capacity; i++) {
 		array[i] = 0;
 	}
 }
 ArrayInt::ArrayInt(unsigned int capacity) {
-	this->array = (int*) malloc(sizeof(int) * capacity);
+	this->array = new int[capacity];
 	this->capacity = capacity;
 	for (unsigned int i = 0; i < capacity; i++) {
 		array[i] = 0;
