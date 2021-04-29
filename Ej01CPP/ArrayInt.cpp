@@ -25,7 +25,7 @@ ArrayInt::ArrayInt(unsigned int capacity) {
 	}
 }
 ArrayInt::~ArrayInt() {
-	free(array);
+	delete[] array;
 }
 void ArrayInt::setValue(unsigned int index, int data) {
 	if (index >= 0 && index < capacity) {
