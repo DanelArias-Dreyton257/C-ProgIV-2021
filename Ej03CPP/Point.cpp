@@ -48,3 +48,20 @@ void Point::swap3(Point *p) {
 	*p = tmp;
 }
 
+void Point::setX(float x) {
+	this->x = x;
+}
+void Point::setY(float y) {
+	this->y = y;
+}
+float Point::getX() const {
+	return this->x;
+}
+float Point::getY() const {
+	return this->y;
+}
+void Point::sumar(const Point &p) {
+	this->x += p.x;
+	this->y += p.y;
+}
+

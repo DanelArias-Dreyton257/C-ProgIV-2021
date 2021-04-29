@@ -24,6 +24,12 @@ public:
 	void swap1(Point p);
 	void swap2(Point &p);
 	void swap3(Point *p);
+
+	void setX(float x);
+	void setY(float y);
+	float getX() const;
+	float getY() const;
+	void sumar(const Point &p);
 };
 
 #endif /* POINT_H_ */
