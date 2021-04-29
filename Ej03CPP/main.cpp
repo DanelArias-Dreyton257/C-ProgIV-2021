@@ -5,7 +5,7 @@
  *      Author: danel
  */
 int main(int argc, char **argv) {
-
+	//TODO Comprobar las funciones
 }
 
 
